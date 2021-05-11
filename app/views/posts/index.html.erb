@@ -1,1 +1,6 @@
 <h1>Index post page</h1>
+<% @post.each do |post| %>
+  <p><%= post.title %> <%= post.description %></p>
+
+
+<% end %>
