@@ -1,14 +1,12 @@
-<div class="field">
-  POST TITLE:
-    <%= @post.title %>
-  </div>
-
-  <div class="field">
-  POST DESCRIPTION:
-    <%= @post.description %>
-  </div>
-
-  <div class="field">
-  USER ID:
-  <%= @post.user_id %> 
-  </div>
+<table BORDER>
+  <thead>
+    <tr> 
+      <th>TITLE</th><th>DESCRIPTION</th><th>USER_ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @post.title %></td> <td><%= @post.description %></td> <td><%= @post.user_id %></td>
+    </tr>
+  </tbody>
+</table>
