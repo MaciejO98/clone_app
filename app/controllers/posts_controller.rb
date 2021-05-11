@@ -4,6 +4,28 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      flash[:notice] = "Post was successfully deleted"
+      redirect_to "/posts"
+    end
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "Post was updated successfully"
+      redirect_to "/posts"
+    else  
+      render 'edit'
+    end
+  end
+
   def index
     @post = Post.all
   end
