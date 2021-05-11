@@ -1,6 +1,15 @@
 <h1>Index post page</h1>
+<table>
+  <thead>
+    <tr> 
+      <th>TITLE</th><th>DESCRIPTION</th><th>USER_ID</th>
+    </tr>
+  </thead>
 <% @post.each do |post| %>
-  <p><%= post.title %> <%= post.description %></p>
-
-
+  <tbody>
+    <tr>
+      <td><%= post.title %></td> <td><%= post.description %></td> <td><%= post.user_id %></td>
+    </tr>
+  </tbody>
 <% end %>
+</table>
