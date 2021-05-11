@@ -5,4 +5,5 @@ Rails.application.routes.draw do
       }
   get 'users/:id' => 'users#show'
   root 'pages#index'
+  resources :posts
 end
