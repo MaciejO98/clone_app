@@ -21,14 +21,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+  
+    if @user.update(edit_user_params)
+      flash[:notice] = "You have succesfully updated your profile"
+      redirect_to root_path
+    else
+      render 'edit'
+    end
+  end
+
+# Edycja użytkownika działa, ale nie musze podawać hasła żeby cokolwiek zmienić.
 
   # DELETE /resource
   # def destroy
@@ -70,5 +82,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit(:email, :First_name, :Last_name, :Year_of_birth, :password, :password_confirmation)
+  end
+
+  def edit_user_params
+    params.require(:user).permit(:email, :First_name, :Last_name, :Year_of_birth, :password)
   end
 end
