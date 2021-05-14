@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
   def like
     @post = Post.all.find(params[:id])
@@ -33,7 +34,13 @@ class PostsController < ApplicationController
   end
 
   def index
-    @post = Post.all
+    @post = Post.order(:id)
+
+    if params[:order] == 'title'
+      @post = Post.all.order('title')
+    else
+        @post = Post.all
+    end
   end
 
   def new
@@ -56,4 +63,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :description, :user_id)
   end
+
 end
