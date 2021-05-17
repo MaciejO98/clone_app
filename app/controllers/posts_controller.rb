@@ -35,13 +35,12 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.order(:id)
-
     if params[:order] == 'title'
       @post = Post.all.order('title')
     elsif params[:order] == 'likes'
         @post = Post.all.order('likes')
     else
-      @post = Post.all
+      @post = Post.all.order('description')
     end
   end
 
