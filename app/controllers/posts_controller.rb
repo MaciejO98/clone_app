@@ -38,8 +38,10 @@ class PostsController < ApplicationController
 
     if params[:order] == 'title'
       @post = Post.all.order('title')
+    elsif params[:order] == 'likes'
+        @post = Post.all.order('likes')
     else
-        @post = Post.all
+      @post = Post.all
     end
   end
 

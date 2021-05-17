@@ -6,6 +6,7 @@
       <th>TITLE</th>
       <th>DESCRIPTION</th>
       <th>USER_ID</th>
+      <th>LIKES</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <td><%= post.title %></td>
       <td><%= post.description %></td>
       <td><%= post.user_id %></td>
+      <td><%= post.likes.count %></td>
       <td>
         <%= link_to "Show", post_path(post)%>
         <%= link_to "Edit post", edit_post_path(post)%>
@@ -26,6 +28,6 @@
 <% end %>
 </table>
 <p>Sort by: 
-<%= link_to "id", posts_path(order: 'post_id') %>
+<%= link_to "likes", posts_path(order: 'likes') %>
 <%= link_to "title", posts_path(order: 'title') %>
 </p>
