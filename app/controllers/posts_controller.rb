@@ -1,21 +1,18 @@
 class PostsController < ApplicationController
+  before_action :set_post, except: [:index, :new, :create]
 
   def like
-    @post = Post.all.find(params[:id])
-      Like.create(user_id: current_user.id, post_id: @post.id)
+    Like.create(user: current_user, post: @post)
     redirect_to post_path(@post)
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def destroy
-    @post = Post.find(params[:id])
     if @post.destroy
       flash[:notice] = "Post was successfully deleted"
       redirect_to "/posts"
@@ -23,7 +20,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "Post was updated successfully"
       redirect_to "/posts"
@@ -53,6 +49,9 @@ class PostsController < ApplicationController
 
   private
 
+  def set_post
+    @post = Post.find(params[:id])
+  end
   def post_params
     params.require(:post).permit(:title, :description, :user_id)
   end
