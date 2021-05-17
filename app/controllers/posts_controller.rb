@@ -29,7 +29,12 @@ class PostsController < ApplicationController
   end
 
   def index
-    @post = Post.all
+    @post = Post.order(:id)
+    if params[:order] == 'title'
+      @post = Post.all.order('title')
+    else
+        @post = Post.all
+    end
   end
 
   def new

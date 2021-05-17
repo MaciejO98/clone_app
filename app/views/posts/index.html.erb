@@ -2,12 +2,17 @@
 <table BORDER>
   <thead>
     <tr> 
-      <th>TITLE</th><th>DESCRIPTION</th><th>USER_ID</th><th>Actions</th>
+      <th>ID</th>
+      <th>TITLE</th>
+      <th>DESCRIPTION</th>
+      <th>USER_ID</th>
+      <th>Actions</th>
     </tr>
   </thead>
 <% @post.each do |post| %>
   <tbody>
     <tr>
+      <td><%= post.id %></td>
       <td><%= post.title %></td>
       <td><%= post.description %></td>
       <td><%= post.user_id %></td>
@@ -20,3 +25,7 @@
   </tbody>
 <% end %>
 </table>
+<p>Sort by: 
+<%= link_to "id", posts_path(order: 'post_id') %>
+<%= link_to "title", posts_path(order: 'title') %>
+</p> 
