@@ -37,8 +37,8 @@ class PostsController < ApplicationController
     @post = Post.order(:id)
     if params[:order] == 'title'
       @post = Post.all.order('title')
-    elsif params[:order] == 'likes'
-        @post = Post.all.order('likes')
+    elsif params[:order] == 'likes_count'
+        @post = Post.all.order('likes_count')
     else
       @post = Post.all.order('description')
     end

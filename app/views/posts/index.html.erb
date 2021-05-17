@@ -17,7 +17,7 @@
       <td><%= post.title %></td>
       <td><%= post.description %></td>
       <td><%= post.user_id %></td>
-      <td><%= post.likes.count %></td>
+      <td><%= post.likes.size %></td>
       <td>
         <%= link_to "Show", post_path(post)%>
         <%= link_to "Edit post", edit_post_path(post)%>
