@@ -10,17 +10,17 @@
 
   <div class="field">
     <%= f.label :First_name %><br />
-    <%= f.text_field :First_name, autofocus: true %>
+    <%= f.text_field :First_name %>
   </div>
 
   <div class="field">
     <%= f.label :Last_name %><br />
-    <%= f.text_field :Last_name, autofocus: true %>
+    <%= f.text_field :Last_name %>
   </div>
 
   <div class="field">
     <%= f.label :Year_of_birth %><br />
-    <%= f.text_field :Year_of_birth, autofocus: true %>
+    <%= f.date_field :Year_of_birth %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
