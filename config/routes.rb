@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   root 'pages#index'
   resources :posts
   put '/post/:id/like', to: 'posts#like', as: 'like'
+  delete '/post/:id/like', to: 'posts#unlike', as: 'unlike'
 end

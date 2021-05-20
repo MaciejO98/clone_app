@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :posts
-  has_many :likes
+  has_many :likes, dependent: :destroy
   validates :First_name, :Last_name, presence: true, length: {minimum:3 , maximum:50}
   validates :Year_of_birth, presence: true, numericality: { only_integer: true } ##Wypadałoby dać walidacje o datach z przyszłości
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
