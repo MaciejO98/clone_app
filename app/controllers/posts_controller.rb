@@ -64,17 +64,19 @@ class PostsController < ApplicationController
 
   private
 
-<<<<<<< HEAD
+
   def set_post
     @post = Post.find(params[:id])
   end
-=======
+
   def already_liked?
     Like.where(user_id: current_user.id, post_id:
     params[:post_id]).exists?
   end
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
->>>>>>> sortowanie
   def post_params
     params.require(:post).permit(:title, :description, :user_id)
   end
