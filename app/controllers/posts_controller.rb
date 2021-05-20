@@ -1,6 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, except: [:index, :new, :create]
 
+  def unlike
+    if !(already_liked?)
+      flash[:notice] = Cannot unlike
+    else
+      @like.destroy
+    end
+    redirect_to post_path(@post)
+  end
   def like
     Like.create(user: current_user, post: @post)
     redirect_to post_path(@post)
@@ -32,8 +40,10 @@ class PostsController < ApplicationController
     @post = Post.order(:id)
     if params[:order] == 'title'
       @post = Post.all.order('title')
+    elsif params[:order] == 'likes_count'
+        @post = Post.all.order('likes_count DESC')
     else
-        @post = Post.all
+      @post = Post.all
     end
   end
 
@@ -54,9 +64,14 @@ class PostsController < ApplicationController
 
   private
 
+  def already_liked?
+    Like.where(user_id: current_user.id, post_id:
+    params[:post_id]).exists?
+  end
   def set_post
     @post = Post.find(params[:id])
   end
+
   def post_params
     params.require(:post).permit(:title, :description, :user_id)
   end
