@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :posts
   put '/post/:id/like', to: 'posts#like', as: 'like'
   delete '/post/:id/like', to: 'posts#unlike', as: 'unlike'
+  get'/search' => 'posts#search', :as => 'search_page'
 end

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, except: [:index, :new, :create]
+  before_action :set_post, except: [:index, :new, :create, :search]
 
   def unlike
     if !(already_liked?)
@@ -9,6 +9,16 @@ class PostsController < ApplicationController
     end
     redirect_to post_path(@post)
   end
+
+  def search
+    if params[:search].blank?
+      redirect_to(root_path, alert: "Empty field") and return
+    else
+      @parameter = params[:search].downcase
+      @results = Post.all.where("lower(title) LIKE :search", search: @parameter)
+    end
+  end
+
   def like
     Like.create(user: current_user, post: @post)
     redirect_to post_path(@post)
